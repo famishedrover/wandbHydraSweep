@@ -1,0 +1,20 @@
+# Hyperparameter tuning example
+# Config docs: https://docs.wandb.ai/guides/sweeps/configuration
+# Hydra + Sweep: https://github.com/wandb/client/issues/1427
+
+command:
+  - ${env}
+  - ${interpreter}
+  - ${program}
+  - ${args_no_hyphens}
+name: sweep1
+project: TestHydraWandb
+description: Test sweep
+program: main.py
+method: grid
+metric:
+  name: Accuracy/train
+  goal: maximize
+parameters:
+  learning_rate:
+    values: [0.001, 0.002, 0.003]
